@@ -1,5 +1,6 @@
 const AuthenticationController = require('./controllers/AuthenticationController')
 const AuthenticationControllerPolicy = require('./policies/AuthenticationControllerPolicy')
+const BlogPostController = require('./controllers/BlogPostController')
 
 module.exports = app => {
     app.post('/register',
@@ -9,5 +10,9 @@ module.exports = app => {
 
     app.post('/login',
         AuthenticationController.login
+    )
+
+    app.post('/getBlogPosts',
+        BlogPostController.getBlogPosts
     )
 }

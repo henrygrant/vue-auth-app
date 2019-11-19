@@ -8,6 +8,12 @@
           </router-link>
         </v-toolbar-title>
 
+        <v-btn
+            to="/blog"
+        >
+          Blog
+        </v-btn>
+
         <v-spacer></v-spacer>
 
         <v-btn
@@ -21,6 +27,12 @@
             v-if="!$store.state.isUserLoggedIn"
         >
           Sign Up
+        </v-btn>
+        <v-btn
+            v-if="$store.state.isUserLoggedIn"
+            @click="logout"
+        >
+          Log Out
         </v-btn>
       </v-app-bar>
       <v-content>
@@ -38,6 +50,15 @@
     name: 'app',
     components: {
       PageHeader
+    },
+    methods: {
+      logout () {
+        this.$store.dispatch('setToken', null)
+        this.$store.dispatch('setUser', null)
+        this.$router.push({
+          name: 'root'
+        })
+      }
     }
   }
 </script>
