@@ -1,24 +1,22 @@
 <template>
   <v-card>
     <v-toolbar dark short>
-      <v-toolbar-title>Register</v-toolbar-title>
+      <v-toolbar-title>Log In</v-toolbar-title>
     </v-toolbar>
     <v-card-text>
       <form
-        name="register-form"
+        name="login-form"
         autocomplete="off"
       >
       <v-text-field
         type="email"
         label="email"
         v-model="email"
-        autocomplete="new-password"
       />
       <v-text-field
         type="password"
         label="password"
         v-model="password"
-        autocomplete="new-password"
       />
       <div class="error" v-html="error"></div>
       </form>
@@ -26,9 +24,9 @@
     <v-card-actions>
       <v-btn
         dark
-        @click="register"
+        @click="login"
       >
-        Register
+        Log In
       </v-btn>
     </v-card-actions>
   </v-card>
@@ -45,9 +43,9 @@
       }
     },
     methods: {
-      async register () {
+      async login () {
         try {
-          const response = await AuthenticationService.register({
+          const response = await AuthenticationService.login({
             email: this.email,
             password: this.password
           })
