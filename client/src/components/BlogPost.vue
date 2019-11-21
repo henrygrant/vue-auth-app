@@ -8,9 +8,6 @@
       No blog content found.
     </slot>
     </v-card-text>
-    <v-card-actions>
-
-    </v-card-actions>
   </v-card>
 </template>
 

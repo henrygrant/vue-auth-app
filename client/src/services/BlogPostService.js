@@ -1,10 +1,10 @@
 import Api from '@/services/Api'
 
 export default {
-  getBlogPosts () {
-    return Api().get('getBlogPosts', {})
+  get () {
+    return Api().get('blogs', {})
   },
-  postBlog (blog) {
-    return Api.post('postBlog', blog)
+  post (blog) {
+    return Api().post('blogs', blog)
   }
 }

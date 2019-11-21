@@ -7,12 +7,14 @@ module.exports = app => {
         AuthenticationControllerPolicy.register,
         AuthenticationController.register
     )
-
     app.post('/login',
         AuthenticationController.login
     )
 
-    app.post('/getBlogPosts',
-        BlogPostController.getBlogPosts
+    app.get('/blogs',
+        BlogPostController.get
+    )
+    app.post('/blogs',
+        BlogPostController.post
     )
 }
