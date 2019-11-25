@@ -1,6 +1,6 @@
 <template>
   <div>
-    <create-blog></create-blog>
+    <create-blog @newBlog="addNewBlog"></create-blog>
     <div v-for="post in blogPosts">
       <blog-post :title="post.title" class="mb-5">
         <div>{{post.body}}</div>
@@ -27,9 +27,13 @@
       }
     },
     async mounted () {
-      this.blogPosts = (await BlogPostService.get()).data
+      this.blogPosts = (await BlogPostService.get()).data.reverse()
     },
     methods: {
+      addNewBlog (newBlog) {
+        console.log(newBlog)
+        this.blogPosts.unshift(newBlog)
+      }
     }
   }
 </script>

@@ -47,10 +47,11 @@ export default {
   methods: {
     async postBlog (blogPost) {
       try {
-        await BlogPostService.post({
+        const newBlog = await BlogPostService.post({
           title: this.blogPost.title,
           body: this.blogPost.body
         })
+        this.$emit('newBlog', newBlog.data)
       } catch (err) {
         console.log(err)
       }

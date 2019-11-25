@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import HelloWorld from '@/components/HelloWorld'
+import HomePage from '@/components/HomePage'
 import Login from '@/components/Login'
 import Register from '@/components/Register'
 import Blog from '@/components/Blog'
@@ -12,7 +12,7 @@ export default new Router({
     {
       path: '/',
       name: 'root',
-      component: HelloWorld
+      component: HomePage
     },
     {
       path: '/login',
