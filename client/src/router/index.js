@@ -4,6 +4,7 @@ import HomePage from '@/components/HomePage'
 import Login from '@/components/Login'
 import Register from '@/components/Register'
 import Blog from '@/components/Blog'
+import Apply from '@/components/Apply'
 
 Vue.use(Router)
 
@@ -28,6 +29,11 @@ export default new Router({
       path: '/blog',
       name: 'blog',
       component: Blog
+    },
+    {
+      path: '/apply',
+      name: 'apply',
+      component: Apply
     }
   ]
 })

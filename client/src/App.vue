@@ -9,9 +9,17 @@
         </v-toolbar-title>
 
         <v-btn
+            class="ml-5"
             to="/blog"
         >
           Blog
+        </v-btn>
+
+        <v-btn
+            class="ml-5"
+            to="/apply"
+        >
+          Apply
         </v-btn>
 
         <v-spacer></v-spacer>
@@ -23,6 +31,7 @@
           Log In
         </v-btn>
         <v-btn
+            class="ml-5"
             to="/register"
             v-if="!$store.state.isUserLoggedIn"
         >
@@ -37,9 +46,9 @@
       </v-app-bar>
       <v-content>
         <v-container fluid>
-          <router-view></router-view>
-      </v-container>
-    </v-content>
+            <router-view></router-view>
+        </v-container>
+      </v-content>
     </div>
   </v-app>
 </template>

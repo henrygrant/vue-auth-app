@@ -1,6 +1,6 @@
 <template>
   <div>
-    <create-blog @newBlog="addNewBlog"></create-blog>
+    <create-blog @newBlog="addNewBlog" class="mb-5"></create-blog>
     <div v-for="post in blogPosts">
       <blog-post :title="post.title" class="mb-5">
         <div>{{post.body}}</div>
