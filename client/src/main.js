@@ -5,10 +5,13 @@ import Vuetify from 'vuetify'
 import { sync } from 'vuex-router-sync'
 import 'vuetify/dist/vuetify.min.css'
 import store from '@/store/store'
+import moment from 'vue-moment'
 
 Vue.config.productionTip = false
 
 Vue.use(Vuetify)
+Vue.use(moment)
+
 const vuetifyOptions = {
   icons: {
     iconfont: 'mdiSvg'

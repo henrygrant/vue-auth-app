@@ -13,6 +13,13 @@
       </v-carousel-item>
     </v-carousel>
     <blockquote class="blockquote">The &lt;Bunky Boyz&gt; are a collection of gamers who kill bosses and get purples.</blockquote>
+    <div class="d-flex justify-center align-center">
+      <span>Want to join?</span>
+<!--      <v-btn dark-->
+<!--          class="ml-5"-->
+<!--          to="/apply"-->
+<!--      >Apply Now</v-btn>-->
+    </div>
   </v-container>
 
 </template>

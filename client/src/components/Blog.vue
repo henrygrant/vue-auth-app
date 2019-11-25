@@ -1,9 +1,14 @@
 <template>
   <div>
-    <create-blog @newBlog="addNewBlog" class="mb-5"></create-blog>
-    <div v-for="post in blogPosts">
-      <blog-post :title="post.title" class="mb-5">
-        <div>{{post.body}}</div>
+    <create-blog
+        v-if="this.$store.state.isUserLoggedIn"
+        @newBlog="addNewBlog"
+        class="mb-5">
+    </create-blog>
+    <div v-for="blog in blogPosts">
+      <blog-post
+          :blog="blog"
+          class="mb-5">
       </blog-post>
     </div>
 
@@ -28,10 +33,10 @@
     },
     async mounted () {
       this.blogPosts = (await BlogPostService.get()).data.reverse()
+      console.log(this.blogPosts)
     },
     methods: {
       addNewBlog (newBlog) {
-        console.log(newBlog)
         this.blogPosts.unshift(newBlog)
       }
     }

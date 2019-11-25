@@ -51,8 +51,11 @@
             email: this.email,
             password: this.password
           })
-          this.$store.dispatch('setToken', response.data.token)
-          this.$store.dispatch('setUser', response.data.user)
+          await this.$store.dispatch('setToken', response.data.token)
+          await this.$store.dispatch('setUser', response.data.user)
+          await this.$router.push({
+            name: 'root'
+          })
         } catch (error) {
           this.error = error.response.data.error
         }

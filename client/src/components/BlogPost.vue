@@ -1,12 +1,12 @@
 <template>
   <v-card>
     <v-toolbar dark short>
-      <v-toolbar-title>{{title}}</v-toolbar-title>
+      <v-toolbar-title>{{blog.title}}</v-toolbar-title>
+      <v-spacer></v-spacer>
+      <v-toolbar-title>{{blog.createdAt | moment("MMMM Do YYYY")}}</v-toolbar-title>
     </v-toolbar>
     <v-card-text>
-    <slot>
-      No blog content found.
-    </slot>
+      {{blog.body}}
     </v-card-text>
   </v-card>
 </template>
@@ -14,7 +14,7 @@
 <script>
 export default {
   props: [
-    'title'
+    'blog'
   ]
 }
 </script>

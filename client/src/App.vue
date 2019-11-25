@@ -61,12 +61,14 @@
       PageHeader
     },
     methods: {
-      logout () {
-        this.$store.dispatch('setToken', null)
-        this.$store.dispatch('setUser', null)
-        this.$router.push({
-          name: 'root'
-        })
+      async logout () {
+        await this.$store.dispatch('setToken', null)
+        await this.$store.dispatch('setUser', null)
+        if (this.$router.history.current.name !== 'root') {
+          await this.$router.push({
+            name: 'root'
+          })
+        }
       }
     }
   }
