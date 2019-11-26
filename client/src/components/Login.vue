@@ -9,9 +9,8 @@
         autocomplete="off"
       >
       <v-text-field
-        type="email"
-        label="email"
-        v-model="email"
+        label="username"
+        v-model="username"
       />
       <v-text-field
         type="password"
@@ -37,7 +36,7 @@
   export default {
     data () {
       return {
-        email: '',
+        username: '',
         password: '',
         error: null
       }
@@ -46,7 +45,7 @@
       async login () {
         try {
           const response = await AuthenticationService.login({
-            email: this.email,
+            username: this.username,
             password: this.password
           })
           await this.$store.dispatch('setToken', response.data.token)

@@ -1,4 +1,4 @@
-const fs = require('fs')
+// const fs = require('fs')
 const path = require('path')
 const Sequelize = require('sequelize')
 const config = require('../config/config')
@@ -15,16 +15,24 @@ const sequelize = new Sequelize(
 )
 
 
-fs
-    .readdirSync(__dirname)
-    .filter( file => file !== 'index.js')
-    .forEach( file => {
-        const model = sequelize.import(path.join(__dirname, file))
-        db[model.name] = model
-    })
+// fs
+//     .readdirSync(__dirname)
+//     .filter( file => file !== 'index.js')
+//     .forEach( file => {
+//         const model = sequelize.import(path.join(__dirname, file))
+//         db[model.name] = model
+//     })
+db.User = sequelize.import(path.join(__dirname, 'User.js'))
+db.BlogPost = sequelize.import(path.join(__dirname, 'BlogPost.js'))
+
+
+db.User.hasMany(db.BlogPost)
+db.BlogPost.belongsTo(db.User)
+
 
 db.sequelize = sequelize
 db.Sequelize = Sequelize
+
 
 
 

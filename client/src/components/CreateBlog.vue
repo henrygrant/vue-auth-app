@@ -37,10 +37,7 @@ import BlogPostService from '@/services/BlogPostService'
 export default {
   data () {
     return {
-      blogPost: {
-        title: null,
-        body: null
-      },
+      blogPost: {},
       error: null
     }
   },
@@ -49,7 +46,8 @@ export default {
       try {
         const newBlog = await BlogPostService.post({
           title: this.blogPost.title,
-          body: this.blogPost.body
+          body: this.blogPost.body,
+          UserId: this.$store.state.user.id
         })
         this.$emit('newBlog', newBlog.data)
       } catch (err) {

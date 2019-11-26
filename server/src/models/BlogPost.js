@@ -6,15 +6,20 @@ module.exports = (sequelize, DataTypes) => {
           primaryKey: true
         },
         title: {
-            type: DataTypes.STRING,
+          type: DataTypes.STRING,
         },
         body: {
           type: DataTypes.STRING
-        }
-    }, {
-        hooks: {
-
+        },
+        UserId: {
+          type: DataTypes.INTEGER ,
+          allowNull: false,
+          references: {
+            model: "Users",
+            key: "id"
+          }
         }
     })
+
     return BlogPost
 }

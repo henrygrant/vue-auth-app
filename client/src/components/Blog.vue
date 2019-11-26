@@ -33,7 +33,6 @@
     },
     async mounted () {
       this.blogPosts = (await BlogPostService.get()).data.reverse()
-      console.log(this.blogPosts)
     },
     methods: {
       addNewBlog (newBlog) {
