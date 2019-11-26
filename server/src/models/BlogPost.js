@@ -7,8 +7,13 @@ module.exports = (sequelize, DataTypes) => {
         },
         title: {
           type: DataTypes.STRING,
+          allowNull: false
         },
         body: {
+          type: DataTypes.STRING,
+          allowNull: false
+        },
+        imageUrl: {
           type: DataTypes.STRING
         },
         UserId: {

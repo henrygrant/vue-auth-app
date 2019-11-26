@@ -22,6 +22,11 @@ module.exports = {
     async post (req, res) {
         try {
             const blogPost = await BlogPost.create(req.body)
+            blogPost.User = await User.findOne({
+                where: {
+                    id: blogPost.UserId
+                }
+            })
             res.send(blogPost)
         } catch (err) {
             console.log(err)

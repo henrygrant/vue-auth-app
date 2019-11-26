@@ -13,10 +13,15 @@
         label="title"
         v-model="blogPost.title"
       />
-      <v-text-field
-        type="body"
+      <v-textarea
+        type="text"
         label="body"
         v-model="blogPost.body"
+      />
+      <v-text-field
+        type="text"
+        label="imageUrl"
+        v-model="blogPost.imageUrl"
       />
       </form>
     </v-card-text>
@@ -47,8 +52,10 @@ export default {
         const newBlog = await BlogPostService.post({
           title: this.blogPost.title,
           body: this.blogPost.body,
-          UserId: this.$store.state.user.id
+          UserId: this.$store.state.user.id,
+          imageUrl: this.blogPost.imageUrl
         })
+        console.log(newBlog)
         this.$emit('newBlog', newBlog.data)
       } catch (err) {
         console.log(err)

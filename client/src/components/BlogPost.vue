@@ -8,6 +8,13 @@
     <v-card-text>
       {{blog.body}}
     </v-card-text>
+
+    <v-img
+        v-if="blog.imageUrl"
+        :src="blog.imageUrl"
+        :alt="blog.imageUrl"
+    >
+    </v-img>
   </v-card>
 </template>
 
