@@ -1,24 +1,29 @@
 <template>
   <v-container>
-    <v-carousel
-      cycle
-      hide-delimiters
-      show-arrows
-    >
-      <v-carousel-item
-        v-for="(img, i) in images"
-        :key="i"
-        :src="img"
-      >
-      </v-carousel-item>
-    </v-carousel>
-    <blockquote class="blockquote">The &lt;Bunky Boyz&gt; are a collection of gamers who kill bosses sometimes always never dies to trash.</blockquote>
-    <div class="d-flex justify-center align-center">
-      <span>Want to join?</span>
-      <v-btn dark
-          class="ml-5"
-          to="/apply"
-      >Apply Now</v-btn>
+    <div class="row">
+      <div class="col-6 mx-auto">
+        <h1>Bunky Boyz isn't just a guild...</h1>
+        <h3>It's a collection of the most elite gamers in the UNIVERSE</h3>
+        <v-carousel
+          cycle
+          hide-delimiters
+          show-arrows
+        >
+          <v-carousel-item
+            v-for="(img, i) in images"
+            :key="i"
+            :src="img"
+          >
+          </v-carousel-item>
+        </v-carousel>
+        <blockquote class="blockquote">Think you have what it takes to be in the &lt;Bunky Boyz&gt;?</blockquote>
+        <div class="d-flex justify-center align-center">
+          <v-btn dark
+              class="ml-5"
+              to="/apply"
+          >Apply Now</v-btn>
+        </div>
+      </div>
     </div>
   </v-container>
 
