@@ -46,12 +46,17 @@
     methods: {
       async register () {
         try {
-          const response = await AuthenticationService.register({
+          await AuthenticationService.register({
             username: this.username,
             password: this.password
           })
-          await this.$store.dispatch('setToken', response.data.token)
-          await this.$store.dispatch('setUser', response.data.user)
+          // remove this when you handle registration better
+          const resp2 = await AuthenticationService.login({
+            username: this.username,
+            password: this.password
+          })
+          await this.$store.dispatch('setToken', resp2.data.token)
+          await this.$store.dispatch('setUser', resp2.data.user)
           await this.$router.push({
             name: 'root'
           })

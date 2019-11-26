@@ -22,6 +22,7 @@
         type="text"
         label="imageUrl"
         v-model="blogPost.imageUrl"
+        :rules="[rules.imageUrl.regex]"
       />
       </form>
     </v-card-text>
@@ -43,7 +44,11 @@ export default {
   data () {
     return {
       blogPost: {},
-      error: null
+      rules: {
+        imageUrl: {
+          regex: v => !v || (v.match(/\.(jpeg|jpg|gif|png)$/) != null || 'Must be valid image URL')
+        }
+      }
     }
   },
   methods: {
@@ -55,8 +60,8 @@ export default {
           UserId: this.$store.state.user.id,
           imageUrl: this.blogPost.imageUrl
         })
-        console.log(newBlog)
         this.$emit('newBlog', newBlog.data)
+        this.blogPost = {}
       } catch (err) {
         console.log(err)
       }
