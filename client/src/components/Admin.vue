@@ -13,7 +13,7 @@
               label="Admin"
               color="red darken-3"
               @change="setAdmin(user)"
-              :disabled="user.id === $store.state.user.id"
+              :disabled="$store.state.user && user.id === $store.state.user.id"
           >
           </v-switch>
         </v-card>

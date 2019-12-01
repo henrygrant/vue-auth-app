@@ -1,7 +1,7 @@
 <template>
   <div class="d-flex flex-column">
     <v-btn
-        class="homepage-item mx-auto mb-3"
+        class="homepage-item mx-auto mb-3 success"
         v-if="this.$store.state.isUserLoggedIn"
         to="/createBlog"
     >
