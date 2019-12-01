@@ -59,11 +59,6 @@
     align-items: center;
     width:100%;
   }
-  /*@media (max-width:530px) {*/
-  /*  .userCard {*/
-  /*    flex-direction: column;*/
-  /*  }*/
-  /*}*/
 
   .userCard > div {
     flex: 0 1 20%;

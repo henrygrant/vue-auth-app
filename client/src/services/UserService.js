@@ -6,11 +6,11 @@ export default {
   },
   put (user) {
     return Api().put(`users/${user.id}`, user)
-  },
-  post (user) {
-    return Api().post('users', user)
-  },
-  delete (user) {
-    return Api().delete('users', user)
   }
+  // post (user) {
+  //   return Api().post('users', user)
+  // },
+  // delete (user) {
+  //   return Api().delete('users', user)
+  // }
 }

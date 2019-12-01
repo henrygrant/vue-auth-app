@@ -7,7 +7,6 @@
     >
       Create New Blog
     </v-btn>
-
     <div
       v-for="blog in blogPosts"
       class="d-flex flex-column"
@@ -19,9 +18,7 @@
       >
       </blog-post>
     </div>
-
   </div>
-
 </template>
 
 <script>
@@ -30,22 +27,23 @@
   import BlogPostService from '@/services/BlogPostService'
 
   export default {
+    // components used in this component
     components: {
       BlogPost,
       CreateBlog
     },
+    // component vars
     data () {
       return {
         blogPosts: []
       }
     },
+    // when component is finished initializing
     async mounted () {
       this.blogPosts = (await BlogPostService.get()).data.reverse()
     },
+    // functions the component can use
     methods: {
-      addNewBlog (newBlog) {
-        this.blogPosts.unshift(newBlog)
-      },
       removeDeletedBlog (deletedBlog) {
         this.blogPosts = this.blogPosts.filter(b => b.id !== deletedBlog)
       }
