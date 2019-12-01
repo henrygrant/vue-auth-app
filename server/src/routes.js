@@ -18,7 +18,7 @@ module.exports = app => {
   app.post('/blogs',
     BlogPostController.post
   )
-  app.delete('/blogs',
+  app.delete('/blogs/:blogId',
     BlogPostController.delete
   )
 

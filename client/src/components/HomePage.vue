@@ -12,7 +12,7 @@
       class="d-flex flex-column"
     >
       <blog-post
-          @deletedBlog="removeDeletedBlog"
+          @deletedBlogId="removeDeletedBlog"
           :blog="blog"
           class="mb-5 mx-auto homepage-item"
       >
@@ -44,8 +44,8 @@
     },
     // functions the component can use
     methods: {
-      removeDeletedBlog (deletedBlog) {
-        this.blogPosts = this.blogPosts.filter(b => b.id !== deletedBlog)
+      removeDeletedBlog (id) {
+        this.blogPosts = this.blogPosts.filter(b => b.id !== id)
       }
     }
   }

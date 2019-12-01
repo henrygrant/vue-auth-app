@@ -39,11 +39,10 @@ module.exports = {
   },
   async delete (req, res) {
     try {
-      console.log(req.body)
       let deletedBlog = await BlogPost.destroy({
-        where: { id: req.body.id }
+        where: { id: req.params.blogId }
       })
-      res.send(deletedBlog.toJSON())
+      res.send(req.body)
     } catch (err) {
       console.log(err)
       res.status(400).send({

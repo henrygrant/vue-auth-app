@@ -8,6 +8,6 @@ export default {
     return Api().post('blogs', blog)
   },
   delete (blog) {
-    return Api().delete('blogs', blog)
+    return Api().delete(`blogs/${blog.id}`, blog)
   }
 }

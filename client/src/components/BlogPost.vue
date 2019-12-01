@@ -25,6 +25,7 @@
             text
             @click="deleteBlog(blog)"
             class="red--text"
+            v-if="$store.state.user && $store.state.user.isAdmin"
         >
           Delete
         </v-btn>
@@ -44,8 +45,8 @@ export default {
   methods: {
     async deleteBlog (blog) {
       try {
-        const deletedBlog = await BlogPostService.delete(blog)
-        this.$emit('deletedBlog', deletedBlog)
+        await BlogPostService.delete(blog)
+        this.$emit('deletedBlogId', blog.id)
       } catch (err) {
         console.log(err)
       }
