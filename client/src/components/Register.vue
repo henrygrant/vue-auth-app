@@ -1,8 +1,5 @@
 <template>
   <v-card>
-    <v-toolbar dark short>
-      <v-toolbar-title>Register</v-toolbar-title>
-    </v-toolbar>
     <v-card-text>
       <form
         name="register-form"
@@ -19,7 +16,13 @@
         v-model="password"
         autocomplete="new-password"
       />
-      <div class="error" v-html="error"></div>
+      <v-text-field
+        type="password"
+        label="confirm password"
+        v-model="password2"
+        autocomplete="new-password"
+      />
+      <div class="errorMsg">{{error}}</div>
       </form>
     </v-card-text>
     <v-card-actions>
@@ -40,11 +43,16 @@
       return {
         username: '',
         password: '',
+        password2: '',
         error: null
       }
     },
     methods: {
       async register () {
+        if (this.password !== this.password2) {
+          this.error = "Your password's don't match"
+          return
+        }
         try {
           await AuthenticationService.register({
             username: this.username,
@@ -69,7 +77,7 @@
   </script>
 
 <style scoped>
-  .error {
+  .errorMsg {
     color: red;
   }
 

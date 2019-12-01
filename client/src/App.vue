@@ -4,7 +4,7 @@
         <page-header></page-header>
         <v-content class="grey darken-2">
           <v-container fluid>
-              <router-view></router-view>
+            <router-view></router-view>
           </v-container>
         </v-content>
       </v-app>
