@@ -3,8 +3,9 @@ import Router from 'vue-router'
 import HomePage from '@/components/HomePage'
 import Login from '@/components/Login'
 import Register from '@/components/Register'
-import Blog from '@/components/Blog'
 import Apply from '@/components/Apply'
+import CreateBlog from '@/components/CreateBlog'
+import Admin from '@/components/Admin'
 
 Vue.use(Router)
 
@@ -14,6 +15,11 @@ export default new Router({
       path: '/',
       name: 'root',
       component: HomePage
+    },
+    {
+      path: '/createBlog',
+      name: 'createBlog',
+      component: CreateBlog
     },
     {
       path: '/login',
@@ -26,14 +32,14 @@ export default new Router({
       component: Register
     },
     {
-      path: '/blog',
-      name: 'blog',
-      component: Blog
-    },
-    {
       path: '/apply',
       name: 'apply',
       component: Apply
+    },
+    {
+      path: '/admin',
+      name: 'admin',
+      component: Admin
     }
   ]
 })

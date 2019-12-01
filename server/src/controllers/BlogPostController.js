@@ -36,5 +36,19 @@ module.exports = {
                 error: 'Error posting blog.'
             })
         }
+    },
+    async delete (req, res) {
+        try {
+            console.log(req.body)
+            let deletedBlog = await BlogPost.destroy({
+                where: { id: req.body.id }
+            })
+            res.send(deletedBlog.toJSON())
+        } catch (err) {
+            console.log(err)
+            res.status(400).send({
+                error: 'Error posting blog.'
+            })
+        }
     }
 }

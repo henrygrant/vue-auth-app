@@ -5,7 +5,7 @@ function hashPassword (user, options) {
     const SALT_FACTOR = 8
 
     if(!user.changed('password')) {
-        return;
+        return
     }
 
     return bcrypt
@@ -23,7 +23,11 @@ module.exports = (sequelize, DataTypes) => {
             unique: true
         },
         password: DataTypes.STRING,
-
+        isAdmin: {
+          type: DataTypes.BOOLEAN,
+          allowNull: false,
+          defaultValue: false
+        }
     }, {
         hooks: {
             beforeCreate: hashPassword,

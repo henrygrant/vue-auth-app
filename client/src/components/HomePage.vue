@@ -1,49 +1,60 @@
 <template>
-  <v-container>
-    <div class="row">
-      <div class="col-6 mx-auto">
-        <h1>Bunky Boyz isn't just a guild...</h1>
-        <h3>It's a collection of the most elite gamers in the UNIVERSE</h3>
-        <v-carousel
-          cycle
-          hide-delimiters
-          show-arrows
-        >
-          <v-carousel-item
-            v-for="(img, i) in images"
-            :key="i"
-            :src="img"
-          >
-          </v-carousel-item>
-        </v-carousel>
-        <blockquote class="blockquote">Think you have what it takes to be in the &lt;Bunky Boyz&gt;?</blockquote>
-        <div class="d-flex justify-center align-center">
-          <v-btn dark
-              class="ml-5"
-              to="/apply"
-          >Apply Now</v-btn>
-        </div>
-      </div>
+  <div class="d-flex flex-column">
+    <v-btn
+        class="homepage-item mx-auto mb-3"
+        v-if="this.$store.state.isUserLoggedIn"
+        to="/createBlog"
+    >
+      Create New Blog
+    </v-btn>
+
+    <div
+      v-for="blog in blogPosts"
+      class="d-flex flex-column"
+    >
+      <blog-post
+          @deletedBlog="removeDeletedBlog"
+          :blog="blog"
+          class="mb-5 mx-auto homepage-item"
+      >
+      </blog-post>
     </div>
-  </v-container>
+
+  </div>
 
 </template>
 
 <script>
-export default {
-  data () {
-    return {
-      images: [
-        'https://imgur.com/3BjOSZz.png',
-        'https://imgur.com/PumMmEg.png',
-        'https://imgur.com/4k9tcnJ.png',
-        'https://imgur.com/ph6ABjy.png'
-      ]
+  import BlogPost from '@/components/BlogPost'
+  import CreateBlog from '@/components/CreateBlog'
+  import BlogPostService from '@/services/BlogPostService'
+
+  export default {
+    components: {
+      BlogPost,
+      CreateBlog
+    },
+    data () {
+      return {
+        blogPosts: []
+      }
+    },
+    async mounted () {
+      this.blogPosts = (await BlogPostService.get()).data.reverse()
+    },
+    methods: {
+      addNewBlog (newBlog) {
+        this.blogPosts.unshift(newBlog)
+      },
+      removeDeletedBlog (deletedBlog) {
+        this.blogPosts = this.blogPosts.filter(b => b.id !== deletedBlog)
+      }
     }
   }
-}
 </script>
 
 <style scoped>
-
+.homepage-item {
+  max-width:750px;
+}
 </style>

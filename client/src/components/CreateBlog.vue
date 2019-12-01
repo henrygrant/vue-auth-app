@@ -1,8 +1,5 @@
 <template>
-  <v-card>
-    <v-toolbar dark short>
-      <v-toolbar-title>Create Post</v-toolbar-title>
-    </v-toolbar>
+  <v-card max-width="750" class="mx-auto">
     <v-card-text>
       <form
         name="new-blog-form"
@@ -26,10 +23,10 @@
       />
       </form>
     </v-card-text>
-    <v-card-actions>
+    <v-card-actions class="d-flex justify-center">
       <v-btn
-        dark
-        @click="postBlog(blogPost)"
+          @click="postBlog(blogPost)"
+          color="success"
       >
         Post
       </v-btn>

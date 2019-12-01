@@ -6,5 +6,8 @@ export default {
   },
   post (blog) {
     return Api().post('blogs', blog)
+  },
+  delete (blog) {
+    return Api().delete('blogs', blog)
   }
 }

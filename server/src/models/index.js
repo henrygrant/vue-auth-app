@@ -22,18 +22,15 @@ const sequelize = new Sequelize(
 //         const model = sequelize.import(path.join(__dirname, file))
 //         db[model.name] = model
 //     })
+
+
 db.User = sequelize.import(path.join(__dirname, 'User.js'))
 db.BlogPost = sequelize.import(path.join(__dirname, 'BlogPost.js'))
-
 
 db.User.hasMany(db.BlogPost)
 db.BlogPost.belongsTo(db.User)
 
-
 db.sequelize = sequelize
 db.Sequelize = Sequelize
-
-
-
 
 module.exports = db
