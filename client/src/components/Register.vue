@@ -1,39 +1,44 @@
 <template>
-  <v-card>
-    <v-card-text>
-      <form
-        name="register-form"
-        autocomplete="off"
-      >
-      <v-text-field
-        label="username"
-        v-model="username"
-        autocomplete="new-password"
-      />
-      <v-text-field
-        type="password"
-        label="password"
-        v-model="password"
-        autocomplete="new-password"
-      />
-      <v-text-field
-        type="password"
-        label="confirm password"
-        v-model="password2"
-        autocomplete="new-password"
-      />
-      <div class="errorMsg">{{error}}</div>
-      </form>
-    </v-card-text>
-    <v-card-actions>
-      <v-btn
-        dark
-        @click="register"
-      >
-        Register
-      </v-btn>
-    </v-card-actions>
-  </v-card>
+
+  <div class="row">
+    <div class="col-12 col-sm-6 col-md-4 mx-auto">
+      <v-card>
+        <v-card-text>
+          <form
+            name="register-form"
+            autocomplete="off"
+          >
+          <v-text-field
+            label="username"
+            v-model="username"
+            autocomplete="new-password"
+          />
+          <v-text-field
+            type="password"
+            label="password"
+            v-model="password"
+            autocomplete="new-password"
+          />
+          <v-text-field
+            type="password"
+            label="confirm password"
+            v-model="password2"
+            autocomplete="new-password"
+          />
+          <div class="errorMsg">{{error}}</div>
+          </form>
+        </v-card-text>
+        <v-card-actions>
+          <v-btn
+            dark
+            @click="register"
+          >
+            Register
+          </v-btn>
+        </v-card-actions>
+      </v-card>
+    </div>
+  </div>
 </template>
 
 <script>

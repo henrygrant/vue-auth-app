@@ -59,6 +59,9 @@ export default {
         })
         this.$emit('newBlog', newBlog.data)
         this.blogPost = {}
+        await this.$router.push({
+          name: 'root'
+        })
       } catch (err) {
         console.log(err)
       }

@@ -1,6 +1,6 @@
 <template>
-  <div class="d-flex">
-    <v-card class="newblog">
+  <div>
+    <v-card>
       <v-img
           v-if="blog.imageUrl"
           :src="blog.imageUrl"
@@ -56,7 +56,5 @@ export default {
 </script>
 
 <style scoped>
-  .newblog {
-    max-width:750px;
-  }
+
 </style>

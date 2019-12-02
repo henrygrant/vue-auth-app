@@ -1,22 +1,21 @@
 <template>
-  <div class="d-flex flex-column">
-    <v-btn
-        class="homepage-item mx-auto mb-3 success"
-        v-if="this.$store.state.isUserLoggedIn"
-        to="/createBlog"
-    >
-      Create New Blog
-    </v-btn>
-    <div
-      v-for="blog in blogPosts"
-      class="d-flex flex-column"
-    >
-      <blog-post
-          @deletedBlogId="removeDeletedBlog"
-          :blog="blog"
-          class="mb-5 mx-auto homepage-item"
+  <div class="row">
+    <div class="col-12 col-sm-8 col-md-6 mx-auto">
+      <v-btn
+          class="mx-auto mb-6 success"
+          v-if="$store.state.user && $store.state.user.isAdmin"
+          to="/createBlog"
       >
-      </blog-post>
+        Create New Blog
+      </v-btn>
+      <div v-for="blog in blogPosts">
+        <blog-post
+            @deletedBlogId="removeDeletedBlog"
+            :blog="blog"
+            class="mb-5 mx-auto"
+        >
+        </blog-post>
+      </div>
     </div>
   </div>
 </template>
@@ -52,7 +51,5 @@
 </script>
 
 <style scoped>
-.homepage-item {
-  max-width:750px;
-}
+
 </style>

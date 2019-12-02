@@ -1,34 +1,34 @@
 <template>
-  <v-card>
-    <v-toolbar dark short>
-      <v-toolbar-title>Log In</v-toolbar-title>
-    </v-toolbar>
-    <v-card-text>
-      <form
-        name="login-form"
-        autocomplete="off"
-      >
-      <v-text-field
-        label="username"
-        v-model="username"
-      />
-      <v-text-field
-        type="password"
-        label="password"
-        v-model="password"
-      />
-      <div class="error" v-html="error"></div>
-      </form>
-    </v-card-text>
-    <v-card-actions>
-      <v-btn
-        dark
-        @click="login"
-      >
-        Log In
-      </v-btn>
-    </v-card-actions>
-  </v-card>
+  <div class="row">
+    <div class="col-12 col-sm-6 col-md-4 mx-auto">
+      <v-card>
+        <v-card-text>
+          <form
+            name="login-form"
+            autocomplete="off"
+          >
+          <v-text-field
+            label="username"
+            v-model="username"
+          />
+          <v-text-field
+            type="password"
+            label="password"
+            v-model="password"
+          />
+          <div class="errorMsg">{{error}}</div>
+          </form>
+        </v-card-text>
+        <v-card-actions>
+          <v-btn dark
+            @click="login"
+          >
+            Log In
+          </v-btn>
+        </v-card-actions>
+      </v-card>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -62,11 +62,8 @@
   </script>
 
 <style scoped>
-  .error {
+  .errorMsg {
     color: red;
   }
 
-  .loginContainer {
-    height:100%
-  }
 </style>
