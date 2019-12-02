@@ -5,4 +5,4 @@
 *.njsproj
 *.sln
 *.sw?
-app.yaml
+**/app.yaml
