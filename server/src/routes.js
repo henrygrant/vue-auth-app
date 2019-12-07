@@ -2,6 +2,7 @@ const AuthenticationController = require('./controllers/AuthenticationController
 const AuthenticationControllerPolicy = require('./policies/AuthenticationControllerPolicy')
 const BlogPostController = require('./controllers/BlogPostController')
 const UserController = require('./controllers/UserController')
+const GoogleSheetsController = require('./controllers/GoogleSheetsController')
 
 module.exports = app => {
   app.post('/register',
@@ -34,4 +35,8 @@ module.exports = app => {
   // app.delete('/users',
   //     UserController.delete
   // )
+
+  app.get('/gamers',
+    GoogleSheetsController.get
+  )
 }
