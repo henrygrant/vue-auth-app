@@ -1,9 +1,12 @@
 const fs  = require('fs')
 const readline = require('readline')
 const {google} = require('googleapis')
+const moment = require('moment')
 
 const SCOPES = ['https://www.googleapis.com/auth/spreadsheets.readonly']
 const TOKEN_PATH = 'token.json'
+
+const SPREADSHEET_ID = '1O0FYq8SnoovnGahtybLBA7xY--N6kzav2rzpQXyDovI'
 
 
 /**
@@ -59,9 +62,6 @@ function getNewToken(oAuth2Client, callback) {
 // Gets data from Bunky Boyz DKP sheet and massages into objects
 async function getGamers(auth) {
   const sheets = google.sheets({version: 'v4', auth})
-  const spreadsheetId = '1O0FYq8SnoovnGahtybLBA7xY--N6kzav2rzpQXyDovI'
-  let totalGamers
-  let gamerData
 
   // get total amount of gamers
   async function getTotalGamers (spreadsheetId) {
@@ -75,7 +75,7 @@ async function getGamers(auth) {
       console.log('The API returned an error: ' + err)
     }
   }
-  totalGamers = await getTotalGamers(spreadsheetId)
+  const totalGamers = await getTotalGamers(SPREADSHEET_ID)
 
   // get gamer data
   async function getGamerData (spreadsheetId, totalGamers) {
@@ -111,7 +111,34 @@ async function getGamers(auth) {
       return console.log('The API returned an error: ' + err)
     }
   }
-  gamerData = await getGamerData (spreadsheetId, totalGamers)
+
+  async function getGamerLogs (spreadsheetId) {
+    try {
+       const ret = await sheets.spreadsheets.values.get({
+        spreadsheetId: spreadsheetId,
+        range: `Log!A2:D`, // get all gamer logs
+      })
+      let formattedLog = []
+      ret.data.values.forEach(row => {
+        formattedLog.push({
+          Gamer: row[0],
+          Event: row[1],
+          DKP:   row[2],
+          Date:  row[3],
+        })
+      })
+      return formattedLog
+    } catch (err) {
+      return console.log('The API returned an error: ' + err)
+    }
+  }
+  let gamerData = await getGamerData (SPREADSHEET_ID, totalGamers)
+  const logs = await getGamerLogs(SPREADSHEET_ID, gamerData)
+  console.log(logs)
+
+  gamerData.forEach(gamer => {
+    gamer.Logs = logs.filter(L => L.Gamer === gamer.Gamers).reverse()
+  })
   return gamerData
 }
 
