@@ -2,6 +2,7 @@ const fs  = require('fs')
 const readline = require('readline')
 const {google} = require('googleapis')
 const moment = require('moment')
+const cron = require('node-cron')
 
 const SCOPES = ['https://www.googleapis.com/auth/spreadsheets.readonly']
 const TOKEN_PATH = 'token.json'
@@ -134,24 +135,37 @@ async function getGamers(auth) {
   }
   let gamerData = await getGamerData (SPREADSHEET_ID, totalGamers)
   const logs = await getGamerLogs(SPREADSHEET_ID, gamerData)
-  console.log(logs)
 
   gamerData.forEach(gamer => {
     gamer.Logs = logs.filter(L => L.Gamer === gamer.Gamers).reverse()
   })
+
   return gamerData
 }
 
+let cachedGamers = false
+fs.readFile('credentials.json', (err, content) => {
+  if (err) return console.log('Error loading client secret file:', err)
+  authorize(JSON.parse(content), async oauth => {
+    cachedGamers = await getGamers(oauth)
+    cron.schedule(
+      '* * * * *',
+      async () => cachedGamers = await getGamers(oauth),
+      { scheduled: true}
+    )
+  })
+})
 
 
 
 module.exports = {
-  get(req, res) {
-    // Load client secrets from a local file.
-    fs.readFile('credentials.json', (err, content) => {
-      if (err) return console.log('Error loading client secret file:', err)
-      // Authorize a client with credentials, then call the Google Sheets API.
-      authorize(JSON.parse(content), async oauth => res.send(await getGamers(oauth)))
-    })
+  getCached(req, res) {
+    if (cachedGamers) {
+      res.send(cachedGamers)
+    } else {
+      const err = 'Problem fetching data from Google Sheets API'
+      console.log(err)
+      res.send(err)
+    }
   }
 }

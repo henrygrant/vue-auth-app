@@ -2,8 +2,7 @@
   <div>
     <v-row justify="space-around">
       <v-col cols="12" sm="6">
-        <v-row @click="refreshGamers()" justify="space-around" class="d-flex align-center">
-          <v-btn dark large>Refresh</v-btn>
+        <v-row justify="space-around" class="d-flex align-center">
           <v-switch
               v-model="filters.Benched"
               class="mx-2"
@@ -99,7 +98,6 @@
     methods: {
       async refreshGamers () {
         this.gamers = (await GoogleSheetsService.get()).data
-        console.log(this.gamers)
         this.filterGamers(this.filters)
       },
       filterGamers (filters) {
@@ -120,40 +118,18 @@
         )
       },
       getClassColor (c) {
-        let ret
-        switch (c) {
-          case 'Warrior':
-            ret = 'brown lighten-2'
-            break
-          case 'Warlock':
-            ret = 'deep-purple lighten-3'
-            break
-          case 'Shaman':
-            ret = 'indigo lighten-2'
-            break
-          case 'Rogue':
-            ret = 'yellow lighten-3'
-            break
-          case 'Paladin':
-            ret = 'pink lighten-4'
-            break
-          case 'Mage':
-            ret = 'blue lighten-3'
-            break
-          case 'Druid':
-            ret = 'orange lighten-3'
-            break
-          case 'Hunter':
-            ret = 'light-green lighten-2'
-            break
-          case 'Priest':
-            ret = 'grey lighten-3'
-            break
-          default:
-            ret = 'red'
-            break
+        let classColors = {
+          Warrior: 'brown lighten-2',
+          Warlock: 'deep-purple lighten-3',
+          Shaman: 'indigo lighten-2',
+          Rogue: 'yellow lighten-3',
+          Paladin: 'pink lighten-4',
+          Mage: 'blue lighten-3',
+          Druid: 'orange lighten-3',
+          Hunter: 'light-green lighten-2',
+          Priest: 'grey lighten-3'
         }
-        return ret
+        return classColors[c] ? classColors[c] : 'red'
       }
     },
     watch: {
@@ -166,10 +142,10 @@
     },
     async mounted () {
       await this.refreshGamers()
-      // setInterval(async () => {
-      //   await this.refreshGamers()
-      //   console.log('refreshing...')
-      // }, 10000)
+      setInterval(async () => {
+        await this.refreshGamers()
+        console.log('refreshing...')
+      }, 30000)
     }
   }
 </script>

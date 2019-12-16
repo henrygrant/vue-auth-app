@@ -35,8 +35,8 @@ module.exports = app => {
   // app.delete('/users',
   //     UserController.delete
   // )
-
+  //
   app.get('/gamers',
-    GoogleSheetsController.get
+    GoogleSheetsController.getCached
   )
 }
