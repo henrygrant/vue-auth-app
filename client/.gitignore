@@ -23,3 +23,5 @@ yarn-error.log*
 # gcloud config because env vars
 app.yaml
 .firebase/
+
+package-lock.json
