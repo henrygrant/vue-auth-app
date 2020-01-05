@@ -15,5 +15,10 @@ module.exports = {
   },
   authentication: {
     jwtSecret: process.env.JWT_SECRET || 'secret'
+  },
+  blogImages: {
+    bucket: 'bunky-blog-images',
+    projectId: 'bunkybackend',
+    keyFilename: 'bunkybackend-storage-creds.json'
   }
 }

@@ -18,17 +18,17 @@
     Apply
   </v-btn>
 
-  <v-btn
-      text
-      class="ml-2"
-      to="/dkp"
-      v-if="
-      $store.state.isUserLoggedIn &&
-      $store.state.user &&
-      $store.state.user.isAdmin"
-  >
-    DKP
-  </v-btn>
+<!--  <v-btn-->
+<!--      text-->
+<!--      class="ml-2"-->
+<!--      to="/dkp"-->
+<!--      v-if="-->
+<!--      $store.state.isUserLoggedIn &&-->
+<!--      $store.state.user &&-->
+<!--      $store.state.user.isAdmin"-->
+<!--  >-->
+<!--    DKP-->
+<!--  </v-btn>-->
 
   <v-btn
       text
@@ -41,7 +41,6 @@
   >
     Admin
   </v-btn>
-
   <v-spacer></v-spacer>
 
   <v-btn

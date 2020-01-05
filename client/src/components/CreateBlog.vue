@@ -15,12 +15,9 @@
         label="body"
         v-model="blogPost.body"
       />
-      <v-text-field
-        type="text"
-        label="imageUrl"
-        v-model="blogPost.imageUrl"
-        :rules="[rules.imageUrl.regex]"
-      />
+      <file-upload
+        :onComplete="setImageUrl"
+      ></file-upload>
       </form>
     </v-card-text>
     <v-card-actions class="d-flex justify-center">
@@ -36,16 +33,16 @@
 
 <script>
 import BlogPostService from '@/services/BlogPostService'
+import FileUpload from '@/components/FileUpload.vue'
 
 export default {
+  name: 'CreateBlog',
+  components: {
+    FileUpload
+  },
   data () {
     return {
-      blogPost: {},
-      rules: {
-        imageUrl: {
-          regex: v => !v || (v.match(/\.(jpeg|jpg|gif|png)$/) != null || 'Must be valid image URL')
-        }
-      }
+      blogPost: {}
     }
   },
   methods: {
@@ -65,6 +62,9 @@ export default {
       } catch (err) {
         console.log(err)
       }
+    },
+    setImageUrl (imageUrl) {
+      this.blogPost.imageUrl = imageUrl
     }
   }
 }

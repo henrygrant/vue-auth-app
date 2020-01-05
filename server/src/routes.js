@@ -3,6 +3,14 @@ const AuthenticationControllerPolicy = require('./policies/AuthenticationControl
 const BlogPostController = require('./controllers/BlogPostController')
 const UserController = require('./controllers/UserController')
 const GoogleSheetsController = require('./controllers/GoogleSheetsController')
+const FileUploadController = require('./controllers/FileUploadController')
+
+const config = require('./config/config')
+const multer = require('multer')
+const multerGoogleStorage = require('multer-google-storage')
+const uploadHandler = multer({
+  storage: multerGoogleStorage.storageEngine(config.blogImages)
+})
 
 module.exports = app => {
   app.post('/register',
@@ -16,7 +24,7 @@ module.exports = app => {
   app.get('/blogs',
     BlogPostController.get
   )
-  app.post('/blogs',
+  app.post('/blogs', uploadHandler.any(),
     BlogPostController.post
   )
   app.delete('/blogs/:blogId',
@@ -38,5 +46,10 @@ module.exports = app => {
   //
   app.get('/gamers',
     GoogleSheetsController.getCached
+  )
+
+  app.post('/imageupload', 
+    uploadHandler.single('file'),
+    FileUploadController.post
   )
 }

@@ -1,3 +1,6 @@
 app.yaml
 node_modules
 .gcloudignore
+bunkybackend-storage-creds.json
+credentials.json
+token.json

@@ -148,11 +148,11 @@ fs.readFile('credentials.json', (err, content) => {
   if (err) return console.log('Error loading client secret file:', err)
   authorize(JSON.parse(content), async oauth => {
     cachedGamers = await getGamers(oauth)
-    cron.schedule(
-      '* * * * *',
-      async () => cachedGamers = await getGamers(oauth),
-      { scheduled: true}
-    )
+    // cron.schedule(
+    //   '* * * * *',
+    //   async () => cachedGamers = await getGamers(oauth),
+    //   { scheduled: true}
+    // )
   })
 })
 

@@ -6,7 +6,7 @@ import Register from '@/components/Register'
 import Apply from '@/components/Apply'
 import CreateBlog from '@/components/CreateBlog'
 import Admin from '@/components/Admin'
-import DKP from '@/components/DKP'
+// import DKP from '@/components/DKP'
 
 Vue.use(Router)
 
@@ -22,11 +22,11 @@ export default new Router({
       name: 'createBlog',
       component: CreateBlog
     },
-    {
-      path: '/dkp',
-      name: 'dkp',
-      component: DKP
-    },
+    // {
+    //   path: '/dkp',
+    //   name: 'dkp',
+    //   component: DKP
+    // },
     {
       path: '/login',
       name: 'login',
